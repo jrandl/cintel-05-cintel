@@ -91,7 +91,7 @@ def reactive_calc_combined():
 # Call the ui.page_opts() function
 # Set title to a string in quotes that will appear at the top
 # Set fillable to True to use the whole page width for the UI
-ui.page_opts(title="PyShiny Express: Live Data Example", fillable=True)
+ui.page_opts(title="Josiah's Antarctic Weather Dashboard - With Dark Mode", fillable=True)
 
 # Sidebar is typically used for user interaction/information
 # Note the with statement to create the sidebar followed by a colon
@@ -110,18 +110,14 @@ with ui.sidebar(open="open"):
         href="https://github.com/jrandl/cintel-05-cintel",
         target="_blank",
     )
-    ui.a(
-        "PyShiny App",
-        href="https://denisecase.github.io/cintel-05-cintel/",
-        target="_blank",
-    )
     ui.a("PyShiny", href="https://shiny.posit.co/py/", target="_blank")
     ui.a(
         "PyShiny Express",
-        href="hhttps://shiny.posit.co/blog/posts/shiny-express/",
+        href="https://shiny.posit.co/blog/posts/shiny-express/",
         target="_blank",
     )
 
+    # Create radio buttons for dark or light mode
     ui.input_radio_buttons("dark_mode", "Dark Mode:", ["Yes", "No"], selected="Yes")
 
 # In Shiny Express, everything not in the sidebar is in the main panel
@@ -210,13 +206,10 @@ with ui.card():
 
             return fig
             
-# Reactive observers
+# Reactive observers for either dark mode or light mode
 @reactive.effect
 def _():
     if input.dark_mode() == "Yes":
         ui.update_dark_mode("dark")
     else:
         ui.update_dark_mode("light")
-
-    
-        
